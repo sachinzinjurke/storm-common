@@ -1,0 +1,71 @@
+<hazelcast-client
+	xsi:schemaLocation="http://www.hazelcast.com/schema/client-config hazelcast-client-config-3.3.xsd"
+	xmlns="http://www.hazelcast.com/schema/client-config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<!--Cluster name to connect -->
+	<group>
+		<name>qa</name>
+		<password>qa-pass</password>
+	</group>
+
+	<!--client properties -->
+	<properties>
+		<property name="hazelcast.client.connection.timeout">10000</property>
+		<property name="hazelcast.client.heartbeat.interval">1000</property>
+		<property name="hazelcast.client.retry.count">3</property>		
+	</properties>
+
+	<!--Network configuration details -->
+	<network>
+		<cluster-members>
+			<!--initial cluster members to connect -->
+			<address>rtckafka305p.qa.ch3.s.com</address>
+			<address>rtckafka304p.qa.ch3.s.com</address>
+			<address>rtckafka303p.qa.ch3.s.com</address>
+		</cluster-members>
+
+		<smart-routing>true</smart-routing>
+		<redo-operation>true</redo-operation>
+
+		<socket-interceptor enabled="true">
+			<!--socket-interceptor configuration details -->
+		</socket-interceptor>
+
+		<aws enabled="false" connection-timeout-seconds="11">
+			<!--AWS configuration details -->
+		</aws>
+	</network>
+
+	<!--local executor pool size -->
+	<executor-pool-size>20</executor-pool-size>
+
+	<!--security credentials configuration -->
+	<!-- <security> <credentials>com.hazelcast.security.UsernamePasswordCredentials</credentials> 
+		</security> -->
+
+	<listeners>
+		<!--listeners -->
+	</listeners>
+
+	<serialization>
+		<!--serialization configuration details -->
+	</serialization>
+
+	<proxy-factories>
+		<!--ProxyFactory configuration details -->
+	</proxy-factories>
+
+	<!--load balancer configuration -->
+	<!-- type can be "round-robin" or "random" -->
+	<load-balancer type="random" />
+
+	<near-cache name="mapName">
+		<!--near cache configuration details of a map -->
+	</near-cache>
+	
+	<near-cache name="sellerAggMap">
+		<!--near cache configuration details of a map -->
+		<invalidate-on-change>true</invalidate-on-change>
+	</near-cache>
+
+</hazelcast-client>
